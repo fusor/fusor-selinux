@@ -1,0 +1,15 @@
+module fusor 1.0;
+
+require {
+type passenger_t;
+type httpd_sys_rw_content_t;
+type ssh_home_t;
+class dir { write search add_name };
+class file { getattr read create open ioctl append };
+}
+
+#============= passenger_t ==============
+allow passenger_t httpd_sys_rw_content_t:dir search;
+allow passenger_t httpd_sys_rw_content_t:file { read getattr open ioctl };
+allow passenger_t ssh_home_t:dir { write add_name };
+allow passenger_t ssh_home_t:file { create append };
