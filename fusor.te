@@ -9,7 +9,7 @@ type osapi_compute_port_t;
 type mmcc_port_t;
 class tcp_socket name_connect;
 class dir { write search add_name };
-class file { getattr read create open ioctl append };
+class file { getattr read create open ioctl append write };
 }
 
 #============= passenger_t ==============
