@@ -7,6 +7,8 @@ type ssh_home_t;
 type unreserved_port_t;
 type osapi_compute_port_t;
 type mmcc_port_t;
+type keystone_port_t;
+type neutron_port_t;
 class tcp_socket name_connect;
 class dir { write search add_name };
 class file { getattr read create open ioctl append write };
@@ -20,3 +22,6 @@ allow passenger_t ssh_home_t:file { create append write };
 allow passenger_t osapi_compute_port_t:tcp_socket name_connect;
 allow passenger_t unreserved_port_t:tcp_socket name_connect;
 allow passenger_t mmcc_port_t:tcp_socket name_connect;
+allow passenger_t keystone_port_t:tcp_socket name_connect;
+allow passenger_t neutron_port_t:tcp_socket name_connect;
+
