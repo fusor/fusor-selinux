@@ -34,6 +34,8 @@ type mount_exec_t;
 type nfs_t;
 class process setrlimit;
 class filesystem { mount unmount };
+type portmap_port_t;
+class capability sys_admin;
 }
 
 #============= passenger_t ==============
@@ -61,7 +63,7 @@ allow passenger_t showmount_exec_t:file { read getattr open execute execute_no_t
 allow passenger_t sudo_db_t:dir getattr;
 allow passenger_t sudo_exec_t:file { read getattr open execute execute_no_trans };
 allow passenger_t mount_exec_t:file { read getattr open execute execute_no_trans };
-allow passenger_t mount_var_run_t:dir { write remove_name add_name };
+allow passenger_t mount_var_run_t:dir { write remove_name add_name search };
 allow passenger_t mount_var_run_t:file { rename setattr read lock create write getattr unlink open };
 allow passenger_t nfs_t:dir { search getattr };
 allow passenger_t nfs_t:filesystem { mount unmount };
