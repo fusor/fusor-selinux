@@ -69,3 +69,5 @@ allow passenger_t nfs_t:dir { search getattr };
 allow passenger_t nfs_t:filesystem { mount unmount };
 allow passenger_t passenger_tmp_t:dir mounton;
 allow passenger_t self:process setrlimit;
+allow passenger_t portmap_port_t:tcp_socket name_connect;
+allow passenger_t self:capability sys_admin;
