@@ -18,6 +18,7 @@ type keystone_port_t;
 type neutron_port_t;
 
 #NFS
+type kernel_t;
 type sudo_db_t;
 type hi_reserved_port_t;
 type shadow_t;
@@ -36,6 +37,7 @@ class process setrlimit;
 class filesystem { mount unmount };
 type portmap_port_t;
 class capability sys_admin;
+class system module_request;
 }
 
 #============= passenger_t ==============
@@ -71,3 +73,4 @@ allow passenger_t passenger_tmp_t:dir mounton;
 allow passenger_t self:process setrlimit;
 allow passenger_t portmap_port_t:tcp_socket name_connect;
 allow passenger_t self:capability sys_admin;
+allow passenger_t kernel_t:system module_request;
