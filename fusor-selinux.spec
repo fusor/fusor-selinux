@@ -46,6 +46,7 @@ BuildRequires:  policycoreutils >= %{selinux_policycoreutils_ver}
 BuildRequires:  /usr/bin/pod2man
 BuildArch:      noarch
 
+Requires:           foreman-selinux
 Requires:           selinux-policy >= %{selinux_policy_ver}
 Requires(post):     /usr/sbin/semodule, /sbin/restorecon, /usr/sbin/setsebool, /usr/sbin/selinuxenabled, /usr/sbin/semanage
 Requires(post):     policycoreutils-python
