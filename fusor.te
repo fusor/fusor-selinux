@@ -19,6 +19,7 @@ type foreman_log_t;
 #Openstack
 type keystone_port_t;
 type neutron_port_t;
+type glance_port_t;
 
 #NFS
 type kernel_t;
@@ -60,6 +61,7 @@ allow passenger_t foreman_log_t:dir create;
 #Openstack
 allow passenger_t keystone_port_t:tcp_socket name_connect;
 allow passenger_t neutron_port_t:tcp_socket name_connect;
+allow passenger_t glance_port_t:tcp_socket name_connect;
 
 #NFS
 allow passenger_t chkpwd_exec_t:file { read execute open execute_no_trans };
