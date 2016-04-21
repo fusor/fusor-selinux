@@ -3,7 +3,7 @@ module fusor 1.0;
 require {
 #Common
 type passenger_t;
-class dir { create write search add_name getattr remove_name mounton };
+class dir { create read write search add_name getattr remove_name mounton };
 class file { getattr read create open ioctl append write execute execute_no_trans rename setattr lock unlink };
 class tcp_socket { name_bind name_connect };
 
