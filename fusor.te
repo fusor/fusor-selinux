@@ -61,6 +61,10 @@ allow passenger_t foreman_log_t:dir create;
 allow passenger_t keystone_port_t:tcp_socket name_connect;
 allow passenger_t neutron_port_t:tcp_socket name_connect;
 
+#Openshift
+allow passenger_t ssh_home_t:dir { create read write add_name };
+allow passenger_t ssh_keygen_exec_t:file { read getattr open execute execute_no_trans };
+
 #NFS
 allow passenger_t chkpwd_exec_t:file { read execute open execute_no_trans };
 allow passenger_t hi_reserved_port_t:tcp_socket name_bind;
