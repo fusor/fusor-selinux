@@ -20,6 +20,9 @@ type foreman_log_t;
 type keystone_port_t;
 type neutron_port_t;
 
+#Openshift
+type ssh_keygen_exec_t;
+
 #NFS
 type kernel_t;
 type sudo_db_t;
