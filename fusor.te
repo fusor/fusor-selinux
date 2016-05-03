@@ -19,6 +19,7 @@ type foreman_log_t;
 #Openstack
 type keystone_port_t;
 type neutron_port_t;
+type glance_port_t;
 
 #Openshift
 type ssh_keygen_exec_t;
@@ -63,6 +64,7 @@ allow passenger_t foreman_log_t:dir create;
 #Openstack
 allow passenger_t keystone_port_t:tcp_socket name_connect;
 allow passenger_t neutron_port_t:tcp_socket name_connect;
+allow passenger_t glance_port_t:tcp_socket name_connect;
 
 #Openshift
 allow passenger_t ssh_home_t:dir { create read write add_name };
