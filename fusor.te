@@ -41,7 +41,7 @@ type passenger_tmp_t;
 type mount_exec_t;
 type nfs_t;
 class process setrlimit;
-class filesystem { mount unmount };
+class filesystem { mount unmount getattr };
 type portmap_port_t;
 class capability sys_admin;
 class system module_request;
@@ -88,7 +88,7 @@ allow passenger_t mount_exec_t:file { read getattr open execute execute_no_trans
 allow passenger_t mount_var_run_t:dir { write remove_name add_name search };
 allow passenger_t mount_var_run_t:file { rename setattr read lock create write getattr unlink open };
 allow passenger_t nfs_t:dir { search getattr };
-allow passenger_t nfs_t:filesystem { mount unmount };
+allow passenger_t nfs_t:filesystem { mount unmount getattr };
 allow passenger_t passenger_tmp_t:dir mounton;
 allow passenger_t self:process setrlimit;
 allow passenger_t portmap_port_t:tcp_socket name_connect;
