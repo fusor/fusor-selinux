@@ -15,6 +15,7 @@ type mmcc_port_t;
 
 #Logging
 type foreman_log_t;
+type tomcat_log_t;
 
 #Openstack
 type keystone_port_t;
@@ -63,6 +64,7 @@ allow passenger_t mountd_port_t:tcp_socket name_connect;
 
 #Logging
 allow passenger_t foreman_log_t:dir create;
+allow passenger_t tomcat_log_t:file { read open };
 
 #Openstack
 allow passenger_t keystone_port_t:tcp_socket name_connect;
