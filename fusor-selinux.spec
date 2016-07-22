@@ -42,7 +42,7 @@ URL:            http://www.theforeman.org
 Source0:        %{name}-%{version}.tar.gz
 
 BuildRequires:  checkpolicy, selinux-policy-devel, hardlink
-BuildRequires:  policycoreutils >= %{selinux_policycoreutils_ver}
+BuildRequires:  policycoreutils
 BuildRequires:  /usr/bin/pod2man
 BuildArch:      noarch
 
