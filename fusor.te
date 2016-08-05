@@ -51,6 +51,11 @@ type mountd_port_t;
 
 #validation with sys-filesystem
 class process execmem;
+
+#dhcp BZ 1356166
+type dhcpc_t;
+type policykit_t;
+class dbus send_msg;
 }
 
 #============= passenger_t ==============
@@ -101,3 +106,7 @@ allow passenger_t kernel_t:system module_request;
 
 #sys-filesystem
 allow passenger_t self:process execmem;
+
+#dhcp BZ 1356166
+allow dhcpc_t policykit_t:dbus send_msg;
+allow policykit_t dhcpc_t:dbus send_msg;
