@@ -96,7 +96,7 @@ allow passenger_t sudo_exec_t:file { read getattr open execute execute_no_trans 
 allow passenger_t mount_exec_t:file { read getattr open execute execute_no_trans };
 allow passenger_t mount_var_run_t:dir { write remove_name add_name search };
 allow passenger_t mount_var_run_t:file { rename setattr read lock create write getattr unlink open };
-allow passenger_t nfs_t:dir { search read mounton getattr };
+allow passenger_t nfs_t:dir { search read mounton open getattr };
 allow passenger_t nfs_t:filesystem { mount unmount getattr };
 allow passenger_t passenger_tmp_t:dir mounton;
 allow passenger_t self:process setrlimit;
