@@ -26,7 +26,7 @@ type glance_port_t;
 #Openshift
 type ssh_keygen_exec_t;
 
-#NFS
+#NFS & GlusterFS
 type kernel_t;
 type sudo_db_t;
 type hi_reserved_port_t;
@@ -48,6 +48,7 @@ type portmap_port_t;
 class capability sys_admin;
 class system module_request;
 type mountd_port_t;
+type gluster_port_t;
 
 #validation with sys-filesystem
 class process execmem;
@@ -82,7 +83,7 @@ allow passenger_t glance_port_t:tcp_socket name_connect;
 allow passenger_t ssh_home_t:dir { create read write add_name };
 allow passenger_t ssh_keygen_exec_t:file { read getattr open execute execute_no_trans };
 
-#NFS
+#NFS & GlusterFS
 allow passenger_t chkpwd_exec_t:file { read execute open execute_no_trans };
 allow passenger_t hi_reserved_port_t:tcp_socket name_bind;
 allow passenger_t hi_reserved_port_t:udp_socket name_bind;
@@ -103,6 +104,7 @@ allow passenger_t self:process setrlimit;
 allow passenger_t portmap_port_t:tcp_socket name_connect;
 allow passenger_t self:capability sys_admin;
 allow passenger_t kernel_t:system module_request;
+allow passenger_t gluster_port_t:tcp_socket name_connect;
 
 #sys-filesystem
 allow passenger_t self:process execmem;
