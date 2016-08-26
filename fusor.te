@@ -12,6 +12,7 @@ type ssh_home_t;
 type unreserved_port_t;
 type osapi_compute_port_t;
 type mmcc_port_t;
+type ldap_port_t;
 
 #Logging
 type foreman_log_t;
@@ -39,9 +40,11 @@ class capability audit_write;
 class netlink_audit_socket { nlmsg_relay create };
 class udp_socket name_bind;
 type mount_var_run_t;
+type passenger_var_run_t;
 type passenger_tmp_t;
 type mount_exec_t;
 type nfs_t;
+type var_lib_nfs_t;
 class process setrlimit;
 class filesystem { mount unmount getattr };
 type portmap_port_t;
@@ -49,6 +52,14 @@ class capability sys_admin;
 class system module_request;
 type mountd_port_t;
 type gluster_port_t;
+type rpcd_t;
+type rpcd_unit_file_t;
+type rpcd_exec_t;
+type systemd_systemctl_exec_t;
+class service { status start };
+type pop_port_t;
+class sock_file write;
+type rpcbind_var_run_t;
 
 #validation with sys-filesystem
 class process execmem;
@@ -105,6 +116,15 @@ allow passenger_t portmap_port_t:tcp_socket name_connect;
 allow passenger_t self:capability sys_admin;
 allow passenger_t kernel_t:system module_request;
 allow passenger_t gluster_port_t:tcp_socket name_connect;
+allow passenger_t rpcd_exec_t:file { getattr read execute open execute_no_trans };
+allow passenger_t systemd_systemctl_exec_t:file { getattr read execute open execute_no_trans };
+allow passenger_t var_lib_nfs_t:dir { search read mounton open getattr write add_name remove_name };
+allow passenger_t var_lib_nfs_t:file { create read open getattr write };
+allow passenger_t ldap_port_t:tcp_socket name_bind;
+allow passenger_t pop_port_t:tcp_socket name_bind;
+allow passenger_t rpcd_unit_file_t:service { status start };
+allow passenger_t rpcbind_var_run_t:sock_file write;
+allow rpcd_t      passenger_var_run_t:file unlink;
 
 #sys-filesystem
 allow passenger_t self:process execmem;
