@@ -48,7 +48,7 @@ type var_lib_nfs_t;
 class process setrlimit;
 class filesystem { mount unmount getattr };
 type portmap_port_t;
-class capability { sys_admin net_admin };
+class capability { sys_admin net_admin setpcap };
 class system module_request;
 type mountd_port_t;
 type gluster_port_t;
@@ -60,12 +60,15 @@ class service { status start };
 type pop_port_t;
 class sock_file write;
 type rpcbind_var_run_t;
+type rpcbind_t;
 type glusterd_exec_t;
 type glusterd_log_t;
 type fuse_device_t;
 class chr_file { read write open create getattr };
 type fusefs_t;
 type virt_migration_port_t;
+type sysctl_fs_t;
+class unix_stream_socket connectto;
 
 #validation with sys-filesystem
 class process execmem;
@@ -125,7 +128,7 @@ allow passenger_t gluster_port_t:tcp_socket name_connect;
 allow passenger_t rpcd_exec_t:file { getattr read execute open execute_no_trans };
 allow passenger_t systemd_systemctl_exec_t:file { getattr read execute open execute_no_trans };
 allow passenger_t var_lib_nfs_t:dir { search read mounton open getattr write add_name remove_name };
-allow passenger_t var_lib_nfs_t:file { create read open getattr write };
+allow passenger_t var_lib_nfs_t:file { create read open getattr write rename unlink setattr lock };
 allow passenger_t ldap_port_t:tcp_socket name_bind;
 allow passenger_t pop_port_t:tcp_socket name_bind;
 allow passenger_t rpcd_unit_file_t:service { status start };
@@ -135,9 +138,12 @@ allow passenger_t glusterd_log_t:dir { search write open read add_name remove_na
 allow passenger_t glusterd_log_t:file { create write open read getattr };
 allow passenger_t fuse_device_t:chr_file { read write open getattr create };
 allow passenger_t fusefs_t:filesystem { mount unmount getattr };
-allow passenger_t self:capability net_admin;
+allow passenger_t self:capability { net_admin setpcap };
 allow passenger_t virt_migration_port_t:tcp_socket name_connect;
 allow passenger_t fusefs_t:dir { getattr open read write create };
+allow passenger_t sysctl_fs_t:dir { search write open read add_name remove_name getattr };
+allow passenger_t sysctl_fs_t:file { rename write unlink create open getattr read };
+allow passenger_t rpcbind_t:unix_stream_socket connectto;
 allow rpcd_t      passenger_var_run_t:file unlink;
 
 #sys-filesystem
