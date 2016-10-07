@@ -4,7 +4,7 @@ require {
 #Common
 type passenger_t;
 class dir { create read write search add_name getattr remove_name mounton open};
-class file { getattr read create open ioctl append write execute execute_no_trans rename setattr lock unlink };
+class file { getattr read create open ioctl append write execute execute_no_trans rename setattr lock unlink link };
 class tcp_socket { name_bind name_connect };
 
 type httpd_sys_rw_content_t;
@@ -13,6 +13,7 @@ type unreserved_port_t;
 type osapi_compute_port_t;
 type mmcc_port_t;
 type ldap_port_t;
+type tmpfs_t;
 
 #Logging
 type foreman_log_t;
@@ -88,6 +89,9 @@ allow passenger_t osapi_compute_port_t:tcp_socket name_connect;
 allow passenger_t unreserved_port_t:tcp_socket name_connect;
 allow passenger_t mmcc_port_t:tcp_socket name_connect;
 allow passenger_t mountd_port_t:tcp_socket name_connect;
+allow passenger_t tmpfs_t:dir { write add_name remove_name search };
+allow passenger_t tmpfs_t:file { getattr read write unlink open create link };
+allow passenger_t tmpfs_t:filesystem { getattr };
 
 #Logging
 allow passenger_t foreman_log_t:dir create;
