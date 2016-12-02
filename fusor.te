@@ -2,11 +2,16 @@ module fusor 1.0;
 
 require {
 #Common
-type passenger_t;
+class chr_file { read write open ioctl create getattr };
 class dir { create read write search add_name getattr remove_name mounton open};
 class file { getattr read create open ioctl append write execute execute_no_trans rename setattr lock unlink link };
+class filesystem { mount unmount getattr };
 class tcp_socket { name_bind name_connect };
 
+type passenger_t;
+type devpts_t;
+type device_t;
+type ptmx_t;
 type httpd_sys_rw_content_t;
 type ssh_home_t;
 type unreserved_port_t;
@@ -47,7 +52,6 @@ type mount_exec_t;
 type nfs_t;
 type var_lib_nfs_t;
 class process setrlimit;
-class filesystem { mount unmount getattr };
 type portmap_port_t;
 class capability { sys_admin net_admin setpcap };
 class system module_request;
@@ -65,7 +69,6 @@ type rpcbind_t;
 type glusterd_exec_t;
 type glusterd_log_t;
 type fuse_device_t;
-class chr_file { read write open create getattr };
 type fusefs_t;
 type virt_migration_port_t;
 type sysctl_fs_t;
@@ -92,6 +95,12 @@ allow passenger_t mountd_port_t:tcp_socket name_connect;
 allow passenger_t tmpfs_t:dir { write add_name remove_name search };
 allow passenger_t tmpfs_t:file { getattr read write unlink open create link };
 allow passenger_t tmpfs_t:filesystem { getattr };
+allow passenger_t device_t:filesystem getattr;
+allow passenger_t devpts_t:chr_file { getattr open read write };
+allow passenger_t devpts_t:filesystem getattr;
+allow passenger_t ptmx_t:chr_file { ioctl open read write };
+allow passenger_t ssh_home_t:dir remove_name;
+allow passenger_t ssh_home_t:file unlink;
 
 #Logging
 allow passenger_t foreman_log_t:dir create;
