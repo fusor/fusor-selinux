@@ -98,7 +98,7 @@ allow passenger_t tmpfs_t:filesystem { getattr };
 allow passenger_t device_t:filesystem getattr;
 allow passenger_t devpts_t:chr_file { getattr open read write };
 allow passenger_t devpts_t:filesystem getattr;
-allow passenger_t ptmx_t:chr_file { ioctl open read write };
+allow passenger_t ptmx_t:chr_file { ioctl open read write getattr };
 allow passenger_t ssh_home_t:dir remove_name;
 allow passenger_t ssh_home_t:file unlink;
 
